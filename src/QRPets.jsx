@@ -11,8 +11,8 @@ class QRPets extends Component {
         <TextLabel label="Name" value="Wilbur" />
         <TextLabel label="Age" value="5" />
         <TextLabel label="Breed" value="Black Cat" />
-        {/* <Image src={guineapig} alt="TEST" /> */}
-        <img src={guineapig} alt="test" width="75" height="45"/>
+        <Image src={guineapig} alt="TEST" w="100" h="50" />
+        {/* <img src={guineapig} alt="test" width="75" height="45"/> */}
       </div>
     );
   }
