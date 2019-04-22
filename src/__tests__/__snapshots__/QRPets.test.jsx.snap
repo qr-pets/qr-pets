@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QRPets renders as expected 1`] = `
+<div
+  className="App"
+>
+  QR-Pets!
+  <TextLabel
+    label="Name"
+    value="Wilbur"
+  />
+  <TextLabel
+    label="Age"
+    value="5"
+  />
+  <TextLabel
+    label="Breed"
+    value="Black Cat"
+  />
+  <Image
+    alt="TEST"
+    h="50"
+    src="IMG_3855.JPG"
+    w="100"
+  />
+</div>
+`;

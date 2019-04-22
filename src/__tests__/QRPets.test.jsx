@@ -1,9 +1,13 @@
+
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import QRPets from '../QRPets';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<QRPets />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('QRPets', () => {
+  it('renders as expected', () => {
+    const QRPetser = shallow(<QRPets />);
+
+    expect(toJson(QRPetser)).toMatchSnapshot();
+  });
 });

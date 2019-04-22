@@ -3,16 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "client": "react-scripts start",
+    "server": "nodemon server.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "build": "react-scripts build",
-    "lint": "eslint --ext .jsx --ext .js .",
-    "test": "react-scripts test",
+    "lint": "eslint --ext .jsx --ext .js ./src",
+    "test": "react-scripts test - --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -25,9 +31,21 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "concurrently": "^4.1.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4"
-  }
+    "eslint-plugin-react": "^7.12.4",
+    "nodemon": "^1.18.11"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/setupTests.js",
+      "!src/index.js"
+    ]
+  },
+  "proxy": "http://localhost:3333/"
 }
