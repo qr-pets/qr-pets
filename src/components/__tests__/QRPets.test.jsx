@@ -6,8 +6,8 @@ import QRPets from '../QRPets';
 
 describe('QRPets', () => {
   it('renders as expected', () => {
-    const QRPetser = shallow(<QRPets />);
+    const wrapper = shallow(<QRPets />);
 
-    expect(toJson(QRPetser)).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

@@ -19,9 +19,9 @@ exports[`QRPets renders as expected 1`] = `
   />
   <Image
     alt="TEST"
-    h="50"
+    h={50}
     src="IMG_3855.JPG"
-    w="100"
+    w={100}
   />
 </div>
 `;

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageComponent renders as expected 1`] = `
+<img
+  alt=""
+  height={100}
+  src=""
+  width={100}
+/>
+`;

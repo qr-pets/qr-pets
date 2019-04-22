@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextLabel from './LabelComponent/TextLabel';
 import Image from './ImageComponent/Image';
-import guineapig from './imgs/IMG_3855.JPG';
+import guineapig from '../imgs/IMG_3855.JPG';
 
 class QRPets extends Component {
   render() {
