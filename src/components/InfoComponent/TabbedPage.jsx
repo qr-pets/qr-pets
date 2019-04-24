@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextLabel from './TextLabel';
+import Tabs from './Tabs';
+import TabsInfo from './TabsInfo';
 
-const TabbedPage = ({ tabs, info }) => {
-  const t = tabs.map((tab, i) => (
-    <TextLabel label={tab} value={info[i]} />
-  ));
-  return (
-    <div>
-      {t}
-    </div>
-  );
-};
+const TabbedPage = ({ tabs, info }) => (
+  <div>
+    <Tabs tabs={tabs} />
+    <TabsInfo info={info} />
+  </div>
+);
 
 TabbedPage.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string),
