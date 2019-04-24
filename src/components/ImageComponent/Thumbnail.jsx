@@ -1,24 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Image from './Image';
 
-const Image = ({
+const Thumbnail = ({
   src, alt, w, h,
 }) => (
-  <img src={src} alt={alt} width={w} height={h} />
+  <Image src={src} alt={alt} width={w} height={h} />
 );
 
-Image.propTypes = {
+Thumbnail.propTypes = {
   src: PropTypes.string,
   alt: PropTypes.string,
   w: PropTypes.string,
   h: PropTypes.string,
 };
 
-Image.defaultProps = {
+Thumbnail.defaultProps = {
   src: '',
   alt: '',
   w: '100',
   h: '100',
 };
 
-export default Image;
+export default Thumbnail;
