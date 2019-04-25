@@ -6,7 +6,7 @@
 }
 
 .container{
-	width: 100%;
+	width: 90%;
 }
 
 .tabs{
@@ -22,4 +22,19 @@
 	outline: none;
 	cursor: pointer;
 	padding: 14px 16px;
+}
+
+.selected{
+	background-color: yellow;
+}
+
+.infoTab{
+	/*display: none;*/
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.hidden{
+	display: none;
 }

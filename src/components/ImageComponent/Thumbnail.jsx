@@ -3,23 +3,22 @@ import PropTypes from 'prop-types';
 import Image from './Image';
 
 const Thumbnail = ({
-  src, alt, w, h,
+  petName, petId, w, h,
 }) => (
-  <Image src={src} alt={alt} width={w} height={h} />
+  <Image src={`https://s3.us-east-2.amazonaws.com/qr-pets-images/${petName}_${petId}.JPG`} alt={petName} width={w} height={h} />
 );
 
 Thumbnail.propTypes = {
-  src: PropTypes.string,
-  alt: PropTypes.string,
-  w: PropTypes.string,
-  h: PropTypes.string,
+  petName: PropTypes.string,
+  petId: PropTypes.number.isRequired,
+  w: PropTypes.number,
+  h: PropTypes.number,
 };
 
 Thumbnail.defaultProps = {
-  src: '',
-  alt: '',
-  w: '100',
-  h: '100',
+  petName: '',
+  w: 150,
+  h: 150,
 };
 
 export default Thumbnail;
