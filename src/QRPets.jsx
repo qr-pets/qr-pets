@@ -11,12 +11,11 @@ class QRPets extends Component {
       // foundation: '',
       petName: 'moomoo',
       petId: 1,
-      onTab: 'info',
     };
   }
 
   render() {
-    const { petName, petId, onTab } = this.state;
+    const { petName, petId } = this.state;
     return (
       <div className="App">
         <h1 className="titleHeader">Adopt a pet today!</h1>
@@ -25,7 +24,7 @@ class QRPets extends Component {
           <TextLabel label="Name" value="MooMoo" />
           <TextLabel label="Age" value="3" />
           <TextLabel label="Breed" value="Guinea Pig" />
-          <TabbedPage tabs={['info', 'photos', 'videos']} info={['moooooo', 'pics here', 'vids here']} onTab={onTab} />
+          <TabbedPage tabs={['info', 'photos', 'videos']} info={['moooooo', 'pics here', 'vids here']} />
         </div>
       </div>
     );

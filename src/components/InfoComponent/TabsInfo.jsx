@@ -5,15 +5,12 @@ import InfoTab from './InfoTab';
 class TabsInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      onTab: 'info',
-    };
   }
 
   render() {
     const { tabs, info, onTab } = this.props;
     const i = tabs.map((tab, x) => (
-      <InfoTab tabText={tab} infoText={info[x]} onTab={onTab} />
+      <InfoTab key={`infoText_${tab}`} tabText={tab} infoText={info[x]} onTab={onTab} />
     ));
     return (
       <div className="infoTab">

@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 class InfoTab extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      onTab: 'info',
-    };
   }
 
   render() {
