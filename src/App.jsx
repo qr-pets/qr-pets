@@ -1,9 +1,16 @@
 import React from 'react';
-import QRPets from './components/QRPets';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import QRPets from './QRPets';
+import PageNotFound from './components/PageNotFound';
 import './App.css';
 
 export default () => (
   <div className="App">
-    <QRPets />
+    <Router>
+      <Switch>
+        <Route exact path="/" component={QRPets} />
+        <Route component={PageNotFound} />
+      </Switch>
+    </Router>
   </div>
 );

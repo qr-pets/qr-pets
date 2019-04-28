@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TextLabel from './LabelComponent/TextLabel';
+import TextLabel from './InfoComponent/TextLabel';
 import Image from './ImageComponent/Image';
 import guineapig from '../imgs/IMG_3855.JPG';
 
