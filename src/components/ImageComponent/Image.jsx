@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Image = ({
-  src, alt, w, h,
+  imageClassName, src, alt, w, h,
 }) => (
-  <img src={src} alt={alt} width={w} height={h} />
+  <img className={imageClassName} src={src} alt={alt} width={w} height={h} />
 );
 
 Image.propTypes = {
+  imageClassName: PropTypes.string,
   src: PropTypes.string,
   alt: PropTypes.string,
   w: PropTypes.string,
@@ -15,6 +16,7 @@ Image.propTypes = {
 };
 
 Image.defaultProps = {
+  imageClassName: '',
   src: '',
   alt: '',
   w: '100',

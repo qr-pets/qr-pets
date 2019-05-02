@@ -2,11 +2,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import TextLabel from '../../LabelComponent/TextLabel';
+import InfoTab from '../../InfoComponent/InfoTab';
 
-describe('TextLabel', () => {
+describe('InfoTab', () => {
   it('renders as expected', () => {
-    const wrapper = shallow(<TextLabel />);
+    const wrapper = shallow(<InfoTab tabText="test" />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });

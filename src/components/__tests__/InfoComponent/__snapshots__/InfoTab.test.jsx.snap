@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoTab renders as expected 1`] = `
+<div
+  className="tabInfo hidden"
+  id="#test_tab_text"
+/>
+`;

@@ -2,11 +2,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import App from '../App';
+import QRPets from '../../QRPets';
 
-describe('App', () => {
+describe('QRPets', () => {
   it('renders as expected', () => {
-    const wrapper = shallow(<App />);
+    const wrapper = shallow(<QRPets />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });

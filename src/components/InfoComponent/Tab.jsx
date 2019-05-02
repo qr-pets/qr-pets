@@ -26,12 +26,13 @@ class Tab extends Component {
 Tab.propTypes = {
   tabText: PropTypes.string,
   selected: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 Tab.defaultProps = {
   tabText: '',
   selected: false,
+  onClick: undefined,
 };
 
 export default Tab;

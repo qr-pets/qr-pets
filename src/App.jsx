@@ -1,5 +1,5 @@
 import React from 'react';
-import QRPets from './components/QRPets';
+import QRPets from './QRPets';
 import './App.css';
 
 export default () => (

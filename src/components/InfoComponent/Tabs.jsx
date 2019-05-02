@@ -42,12 +42,13 @@ class Tabs extends Component {
 Tabs.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string),
   onTab: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 Tabs.defaultProps = {
   tabs: [],
   onTab: 'info',
+  onClick: undefined,
 };
 
 export default Tabs;
