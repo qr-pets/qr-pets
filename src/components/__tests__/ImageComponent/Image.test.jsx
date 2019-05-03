@@ -2,11 +2,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import ImageComponent from '../../ImageComponent/Image';
+import Image from '../../ImageComponent/Image';
 
-describe('ImageComponent', () => {
+describe('Image', () => {
   it('renders as expected', () => {
-    const wrapper = shallow(<ImageComponent />);
+    const wrapper = shallow(<Image />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -19,7 +19,7 @@ describe('ImageComponent', () => {
       h: 10,
     };
     const wrapper = shallow(
-      <ImageComponent
+      <Image
         src={props.src}
         alt={props.alt}
         width={props.w}

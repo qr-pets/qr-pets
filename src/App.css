@@ -1,26 +1,62 @@
+html{
+	width: 100%;
+}
+body{
+	display: flex;
+	width: inherit;
+}
+
+#root{
+	width: inherit;
+}
 .App {
   display: flex;
   align-items: center;
   font-size: calc(10px + 2vmin);
   flex-direction: column;
+  width: inherit;
 }
 
 .container{
-	width: 90%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.section{
+	display: flex;
+	text-align: left;
+}
+
+#basicInfo{
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.thumbnail{
+	margin: 10px;
+}
+
+#basicTextInfo{
+	margin-top: 10px;
+	flex-direction: column;
+	align-content: stretch;
+}
+
+.tabbedContainer{
+	text-align: left;
 }
 
 .tabs{
-	overflow: hidden;
 	border: 1px solid #ccc;
 	background-color: #f1f1f1;
 }
 
 .tab{
 	background-color: inherit;
-	float: left;
 	border: none;
 	outline: none;
-	cursor: pointer;
 	padding: 14px 16px;
 }
 
@@ -29,10 +65,11 @@
 }
 
 .infoTab{
-	/*display: none;*/
 	padding: 6px 12px;
 	border: 1px solid #ccc;
 	border-top: none;
+	overflow-wrap: break-word;
+	white-space: pre-line;
 }
 
 .hidden{

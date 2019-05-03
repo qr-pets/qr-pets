@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextLabel from './components/InfoComponent/TextLabel';
 import TabbedPage from './components/InfoComponent/TabbedPage';
-import Thumbnail from './components/ImageComponent/Thumbnail';
+import Image from './components/ImageComponent/Image';
 import './App.css';
 
 class QRPets extends Component {
@@ -11,21 +11,30 @@ class QRPets extends Component {
       // foundation: '',
       petName: 'moomoo',
       petId: 1,
-      onTab: 'info',
     };
   }
 
   render() {
-    const { petName, petId, onTab } = this.state;
+    const infoString = 'this is test info.\nlorem ipsum something something somethingsomething\n teset test test\nsay something about the animals!!!!!';
+    const picString = 'pic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\n';
+    const vidString = 'youtube.com\nyoutube.com\nyoutube.com\nyoutube.com';
+    const { petName, petId } = this.state;
     return (
       <div className="App">
-        <h1 className="titleHeader">Adopt a pet today!</h1>
         <div className="container">
-          <Thumbnail petName={petName} petId={petId} />
-          <TextLabel label="Name" value="MooMoo" />
-          <TextLabel label="Age" value="3" />
-          <TextLabel label="Breed" value="Guinea Pig" />
-          <TabbedPage tabs={['info', 'photos', 'videos']} info={['moooooo', 'pics here', 'vids here']} onTab={onTab} />
+          <h1 className="titleHeader">Adopt a pet today!</h1>
+          <div className="section" id="basicInfo">
+            <div className="section" id="profilePicture">
+              <Image imageClassName="thumbnail" src={`https://s3.us-east-2.amazonaws.com/qr-pets-images/${petName}_${petId}.JPG`} alt={petName} width={100} height={100} />
+            </div>
+            <div className="section" id="basicTextInfo">
+              <TextLabel label="Name" value="MooMoo" />
+              <TextLabel label="Age" value="3" />
+              <TextLabel label="Breed" value="Guinea Pig" />
+            </div>
+          </div>
+          <br />
+          <TabbedPage tabs={['info', 'photos', 'videos']} info={[infoString, picString, vidString]} />
         </div>
       </div>
     );

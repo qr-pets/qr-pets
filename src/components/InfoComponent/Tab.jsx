@@ -4,16 +4,19 @@ import PropTypes from 'prop-types';
 class Tab extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      onTab: 'info',
-    };
+    this.handleTabClick = this.handleTabClick.bind(this);
+  }
+
+  handleTabClick(event) {
+    const { onClick, tabText } = this.props;
+    onClick(event, tabText);
   }
 
   render() {
-    const { tabText, onTab } = this.props;
-    const show = tabText === onTab ? 'selected' : '';
+    const { tabText, selected } = this.props;
+    const show = selected ? 'selected' : '';
     return (
-      <button className={`tab ${show}`} id={`#${tabText}_tab`} type="button">
+      <button className={`tab ${show}`} id={`#${tabText}_tab`} type="button" onClick={this.handleTabClick}>
         {tabText}
       </button>
     );
@@ -22,12 +25,14 @@ class Tab extends Component {
 
 Tab.propTypes = {
   tabText: PropTypes.string,
-  onTab: PropTypes.string,
+  selected: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 Tab.defaultProps = {
   tabText: '',
-  onTab: 'info',
+  selected: false,
+  onClick: undefined,
 };
 
 export default Tab;

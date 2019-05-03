@@ -7,16 +7,27 @@ class TabbedPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      onTab: 'info',
+      onTab: '',
     };
+    this.handleTabClick = this.handleTabClick.bind(this);
+  }
+
+  componentDidMount() {
+    const { onTab } = this.props;
+    this.setState({ onTab });
+  }
+
+  handleTabClick(event, selectedTab) {
+    this.setState({ onTab: selectedTab });
   }
 
   render() {
-    const { tabs, info, onTab } = this.props;
+    const { tabs, info } = this.props;
+    const { onTab } = this.state;
     return (
-      <div>
-        <Tabs tabs={tabs} onTab={onTab} />
-        <TabsInfo tabs={tabs} info={info} onTab={onTab} />
+      <div className="tabbedContainer">
+        <Tabs tabs={tabs} onTab={onTab} onClick={this.handleTabClick} />
+        <TabsInfo tabs={tabs} onTab={onTab} info={info} />
       </div>
     );
   }
