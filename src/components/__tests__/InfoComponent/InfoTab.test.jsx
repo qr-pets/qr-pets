@@ -10,4 +10,9 @@ describe('InfoTab', () => {
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+  it('displays tab when tab is selected', () => {
+    const wrapper = shallow(<InfoTab onTab="test" tabText="test" />);
+
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });

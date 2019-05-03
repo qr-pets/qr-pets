@@ -5,20 +5,8 @@ import Tab from './Tab';
 class Tabs extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   onTab: '',
-    // };
+
     this.handleTabClick = this.handleTabClick.bind(this);
-  }
-
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps) {
-    // const { onTab } = this.props;
-    // // const { data } = this.state;
-    // if (onTab !== prevProps.onTab) {
-    //   this.state.onTab = onTab;
-    // }
   }
 
   handleTabClick(event, selectedTab) {
