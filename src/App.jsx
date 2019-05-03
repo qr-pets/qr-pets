@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Admin from './components/Admin';
 import QRPets from './QRPets';
+import Upload from './components/Upload';
 import PageNotFound from './components/PageNotFound';
 import './App.css';
 
@@ -11,6 +12,7 @@ export default () => (
       <Switch>
         <Route exact path="/" component={QRPets} />
         <Route exact path="/admin" component={Admin} />
+        <Route exact path="/upload" component={Upload} />
         <Route component={PageNotFound} />
       </Switch>
     </Router>
