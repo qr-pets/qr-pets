@@ -5,12 +5,9 @@ const handleClick = async () => {
   const fileChooser = document.getElementById('file-chooser');
   const file = fileChooser.files[0];
   const { name, type } = file;
-
-  console.log(name, type)
-
-  const {data} = await axios.post('/upload', { name, type });
-  const asd = await axios.post(data, file)
-  console.log(asd)
+  const { data } = await axios.post('/upload', { name, type });
+  const uploadResponse = await axios.put(data, file);
+  console.log(uploadResponse)
 };
 
 export default () => (
