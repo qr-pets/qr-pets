@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 const TextLabel = ({ label, value }) => (
   <div>
-    {label}
-    :&nbsp;
-    {value}
+    {`${label} ${value}`}
   </div>
 );
 

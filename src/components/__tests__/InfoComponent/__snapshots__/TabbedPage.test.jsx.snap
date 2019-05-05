@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabbedPage renders as expected 1`] = `
+<div
+  className="tabbedContainer"
+>
+  <Tabs
+    onClick={[Function]}
+    onTab="info"
+    tabs={Array []}
+  />
+  <TabsInfo
+    info={Array []}
+    onTab="info"
+    tabs={Array []}
+  />
+</div>
+`;

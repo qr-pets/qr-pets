@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image renders as expected 1`] = `
+<img
+  alt=""
+  className=""
+  height="100"
+  src=""
+  width="100"
+/>
+`;
+
+exports[`Image renders props as expected 1`] = `
+<img
+  alt="test"
+  className=""
+  height="100"
+  src="https://s3.us-east-2.amazonaws.com/qr-pets-images/IMG_3855.JPG"
+  width="100"
+/>
+`;
