@@ -46,7 +46,7 @@ class Upload extends React.Component {
           onClick={this.handleClick}
           variant="contained"
         >
-        Upload Picture
+          {'Upload Picture'}
         </Button>
       </div>
     );

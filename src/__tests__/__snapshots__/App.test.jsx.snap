@@ -4,6 +4,27 @@ exports[`App renders as expected 1`] = `
 <div
   className="App"
 >
-  <QRPets />
+  <BrowserRouter>
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/admin"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/upload"
+      />
+      <Route
+        component={[Function]}
+      />
+    </Switch>
+  </BrowserRouter>
 </div>
 `;
