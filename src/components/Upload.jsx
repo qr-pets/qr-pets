@@ -10,7 +10,7 @@ class Upload extends React.Component {
     this.state = {
       fileList: [],
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.uploadPicture = this.uploadPicture.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -20,12 +20,12 @@ class Upload extends React.Component {
     });
   }
 
-  async handleClick() {
+  async uploadPicture() {
     const { fileList } = this.state;
     const file = fileList[0];
     const { name, type } = file;
-    const { data } = await axios.post('/upload', { name, type });
-    const uploadResponse = await axios.put(data, file);
+    const signedUrl = await axios.post('/upload', { name, type });
+    await axios.put(signedUrl, file);
   }
 
   render() {
@@ -43,7 +43,7 @@ class Upload extends React.Component {
         <Button
           color="primary"
           disabled={containsNoFile}
-          onClick={this.handleClick}
+          onClick={this.uploadPicture}
           variant="contained"
         >
           {'Upload Picture'}

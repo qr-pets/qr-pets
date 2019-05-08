@@ -17,14 +17,7 @@ const s3 = new AWS.S3({
   region: AWS_REGION,
 });
 
-const app = express();
-const port = process.env.PORT || 3333;
-
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, parameterLimit: 1000000 }));
-
-app.get('/hello', (req, res) => res.send('hello'));
-app.post('/upload', (req, res) => {
+const upload = (req, res) => {
   const { body } = req;
   const { name, type } = body;
   const s3Params = {
@@ -35,14 +28,23 @@ app.post('/upload', (req, res) => {
     ACL: 'public-read',
   };
 
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+  s3.getSignedUrl('putObject', s3Params, (err, { data }) => {
     if (err) {
       res.json({ err });
     }
 
     res.json(data);
   });
-});
+};
+
+const app = express();
+const port = process.env.PORT || 3333;
+
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, parameterLimit: 1000000 }));
+
+app.get('/hello', (req, res) => res.send('hello'));
+app.post('/upload', upload);
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Listening on port ${port}`));
