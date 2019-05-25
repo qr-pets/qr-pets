@@ -19,20 +19,21 @@ const s3 = new AWS.S3({
 
 const upload = (req, res) => {
   const { body } = req;
-  const { name, type } = body;
+  const { name, type, tags } = body;
   const s3Params = {
     Bucket: S3_BUCKET,
     Key: name,
     Expires: 60,
     ContentType: type,
     ACL: 'public-read',
+    Tagging: '',
   };
-
-  s3.getSignedUrl('putObject', s3Params, (err, { data }) => {
+  // console.log(AWS_ACCESS_KEY);
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
     if (err) {
       res.json({ err });
     }
-
+    console.log(data.data);
     res.json(data);
   });
 };

@@ -6,9 +6,14 @@ body{
 	width: inherit;
 }
 
+input{
+	border-color: #ccc;
+}
+
 #root{
 	width: inherit;
 }
+
 .App {
   display: flex;
   align-items: center;

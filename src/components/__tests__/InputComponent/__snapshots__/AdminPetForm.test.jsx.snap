@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdminPetForm renders as expected 1`] = `
+<div>
+  <Upload
+    handleFileSelect={[Function]}
+  />
+  tags:
+  <AdminTextInput
+    handleChange={[Function]}
+    handleUpdate={[Function]}
+  />
+  <WithStyles(Button)
+    color="primary"
+    disabled={true}
+    onClick={[Function]}
+    variant="contained"
+  >
+    Save Form
+  </WithStyles(Button)>
+</div>
+`;
