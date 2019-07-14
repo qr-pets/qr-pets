@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "client": "react-scripts start",
-    "server": "nodemon server.js",
+    "server": "nodemon ./server",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "build": "react-scripts build",
-    "lint": "eslint --ext .jsx --ext .js ./src",
+    "lint": "eslint --ext .jsx --ext .js ./src ./server",
     "test": "react-scripts test",
     "coverage": "npm test -- --coverage",
     "eject": "react-scripts eject"
