@@ -5,7 +5,6 @@ exports[`AdminPetForm renders as expected 1`] = `
   <Upload
     handleFileSelect={[Function]}
   />
-  tags:
   <AdminTextInput
     handleChange={[Function]}
     handleUpdate={[Function]}

@@ -57,7 +57,7 @@ describe('AdminPetForm', () => {
     const headers = { headers: { 'x-amz-tagging': tags } };
     await wrapperInst.saveForm();
 
-    expect(axios.post).toHaveBeenCalledWith('/upload', { name, type, tags });
+    expect(axios.post).toHaveBeenCalledWith('/upload', { name, type });
     expect(axios.put).toHaveBeenCalledWith('someUrl', file, headers);
   });
 });
