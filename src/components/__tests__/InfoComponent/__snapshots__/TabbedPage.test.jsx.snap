@@ -7,7 +7,18 @@ exports[`TabbedPage renders as expected 1`] = `
   <WithStyles(Tabs)
     onChange={[Function]}
     value={0}
-  />
-  <p />
+  >
+    <WithStyles(Tab)
+      key="page1"
+      label="page1"
+    />
+    <WithStyles(Tab)
+      key="page2"
+      label="page2"
+    />
+  </WithStyles(Tabs)>
+  <p>
+    text1
+  </p>
 </div>
 `;
