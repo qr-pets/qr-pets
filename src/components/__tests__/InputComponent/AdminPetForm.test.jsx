@@ -34,7 +34,7 @@ describe('AdminPetForm', () => {
   });
 
   it('setState {tagList, hasChanged} on handleTagsUpdate', () => {
-    const tagsString = 'guinea pig, moomoo, fluffy';
+    const tagsString = 'guinea pig, moomoo, fluffy,';
     const tagsState = ['guinea pig', 'moomoo', 'fluffy'];
     const tagsUpdateSpy = jest.spyOn(wrapperInst, 'handleTagsUpdate');
     wrapperInst.handleTagsUpdate(tagsString);

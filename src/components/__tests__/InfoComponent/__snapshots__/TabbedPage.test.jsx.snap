@@ -4,15 +4,10 @@ exports[`TabbedPage renders as expected 1`] = `
 <div
   className="tabbedContainer"
 >
-  <Tabs
-    onClick={[Function]}
-    onTab="info"
-    tabs={Array []}
+  <WithStyles(Tabs)
+    onChange={[Function]}
+    value={0}
   />
-  <TabsInfo
-    info={Array []}
-    onTab="info"
-    tabs={Array []}
-  />
+  <p />
 </div>
 `;

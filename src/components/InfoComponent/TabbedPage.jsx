@@ -1,33 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Tabs from './Tabs';
-import TabsInfo from './TabsInfo';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 class TabbedPage extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      onTab: '',
+      onTab: 0,
     };
     this.handleTabClick = this.handleTabClick.bind(this);
   }
 
-  componentDidMount() {
-    const { onTab } = this.props;
-    this.setState({ onTab });
+  handleTabClick(_, tabIndex) {
+    this.setState({ onTab: tabIndex });
   }
 
-  handleTabClick(event, selectedTab) {
-    this.setState({ onTab: selectedTab });
+  renderInfoText() {
+    const { info } = this.props;
+    const { onTab } = this.state;
+
+    return (<p>{info[onTab]}</p>);
   }
 
   render() {
-    const { tabs, info } = this.props;
+    const { tabs } = this.props;
     const { onTab } = this.state;
     return (
       <div className="tabbedContainer">
-        <Tabs tabs={tabs} onTab={onTab} onClick={this.handleTabClick} />
-        <TabsInfo tabs={tabs} onTab={onTab} info={info} />
+        <Tabs value={onTab} onChange={this.handleTabClick}>
+          {tabs.map(tab => <Tab key={tab} label={tab} />)}
+        </Tabs>
+        {this.renderInfoText()}
       </div>
     );
   }
@@ -36,13 +41,11 @@ class TabbedPage extends Component {
 TabbedPage.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string),
   info: PropTypes.arrayOf(PropTypes.string),
-  onTab: PropTypes.string,
 };
 
 TabbedPage.defaultProps = {
   tabs: [],
   info: [],
-  onTab: 'info',
 };
 
 export default TabbedPage;
