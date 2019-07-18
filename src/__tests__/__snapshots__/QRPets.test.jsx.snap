@@ -84,7 +84,6 @@ youtube.com
 youtube.com",
         ]
       }
-      onTab="info"
       tabs={
         Array [
           "info",

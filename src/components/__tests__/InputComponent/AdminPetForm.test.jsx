@@ -34,7 +34,7 @@ describe('AdminPetForm', () => {
   });
 
   it('setState {tagList, hasChanged} on handleTagsUpdate', () => {
-    const tagsString = 'guinea pig, moomoo, fluffy';
+    const tagsString = 'guinea pig, moomoo, fluffy,';
     const tagsState = ['guinea pig', 'moomoo', 'fluffy'];
     const tagsUpdateSpy = jest.spyOn(wrapperInst, 'handleTagsUpdate');
     wrapperInst.handleTagsUpdate(tagsString);
@@ -57,7 +57,7 @@ describe('AdminPetForm', () => {
     const headers = { headers: { 'x-amz-tagging': tags } };
     await wrapperInst.saveForm();
 
-    expect(axios.post).toHaveBeenCalledWith('/upload', { name, type, tags });
+    expect(axios.post).toHaveBeenCalledWith('/upload', { name, type });
     expect(axios.put).toHaveBeenCalledWith('someUrl', file, headers);
   });
 });

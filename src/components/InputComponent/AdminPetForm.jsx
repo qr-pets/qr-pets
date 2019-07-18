@@ -1,6 +1,6 @@
-import React from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import React from 'react';
 import Upload from '../Upload';
 import AdminTextInput from './AdminTextInput';
 
@@ -44,7 +44,8 @@ class AdminPetForm extends React.Component {
     const file = fileList[0];
     const { name, type } = file;
     const tags = tagList.map(tag => `${tag}&`).join(''); // values as tag keys with no value
-    const signedUrl = await axios.post('/upload', { name, type, tags });
+    const signedUrl = await axios.post('/upload', { name, type });
+
     await axios.put(signedUrl.data, file, { headers: { 'x-amz-tagging': tags } });
   }
 
@@ -53,7 +54,6 @@ class AdminPetForm extends React.Component {
     return (
       <>
         <Upload handleFileSelect={this.handleFileSelect} />
-        tags:
         <AdminTextInput handleUpdate={this.handleTagsUpdate} handleChange={this.handleTextChange} />
         <Button
           color="primary"

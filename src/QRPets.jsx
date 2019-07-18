@@ -4,6 +4,10 @@ import TabbedPage from './components/InfoComponent/TabbedPage';
 import Image from './components/ImageComponent/Image';
 import './App.css';
 
+const infoString = 'this is test info.\nlorem ipsum something something somethingsomething\n teset test test\nsay something about the animals!!!!!';
+const picString = 'pic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\n';
+const vidString = 'youtube.com\nyoutube.com\nyoutube.com\nyoutube.com';
+
 class QRPets extends Component {
   constructor(props) {
     super(props);
@@ -15,9 +19,6 @@ class QRPets extends Component {
   }
 
   render() {
-    const infoString = 'this is test info.\nlorem ipsum something something somethingsomething\n teset test test\nsay something about the animals!!!!!';
-    const picString = 'pic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\n';
-    const vidString = 'youtube.com\nyoutube.com\nyoutube.com\nyoutube.com';
     const { petName, petId } = this.state;
     return (
       <div className="App">
