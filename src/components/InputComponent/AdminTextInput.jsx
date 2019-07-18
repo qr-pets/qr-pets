@@ -22,15 +22,13 @@ class AdminTextInput extends React.Component {
 
   render() {
     return (
-      <div>
-        <Input
-          onChange={this.handleChange}
-          type="text"
-          onBlur={this.handleUpdate}
-          placeholder="comma separated tags"
-          id="tag-input"
-        />
-      </div>
+      <Input
+        onChange={this.handleChange}
+        type="text"
+        onBlur={this.handleUpdate}
+        placeholder="comma separated tags"
+        id="tag-input"
+      />
     );
   }
 }
