@@ -52,7 +52,7 @@ class AdminPetForm extends React.Component {
   render() {
     const { hasChanged } = this.state;
     return (
-      <>
+      <div>
         <Upload handleFileSelect={this.handleFileSelect} />
         <AdminTextInput handleUpdate={this.handleTagsUpdate} handleChange={this.handleTextChange} />
         <Button
@@ -63,7 +63,7 @@ class AdminPetForm extends React.Component {
         >
           {'Save Form'}
         </Button>
-      </>
+      </div>
     );
   }
 }
