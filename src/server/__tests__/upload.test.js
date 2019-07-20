@@ -21,22 +21,35 @@ const expectedS3Params = {
 };
 
 describe('upload route', () => {
+  const req = {
+    body: {
+      name: 'myPic',
+      type: 'image/jpeg',
+    },
+  };
+  const res = {
+    json: jest.fn(),
+  };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('upload returns signed url', () => {
     process.env.S3_BUCKET = 'testBucket';
-
-    const req = {
-      body: {
-        name: 'myPic',
-        type: 'image/jpeg',
-      },
-    };
-    const res = {
-      json: jest.fn(),
-    };
 
     upload(req, res);
 
     expect(res.json).toHaveBeenCalledWith('sup');
     expect(s3.getSignedUrl).toHaveBeenCalledWith('putObject', expectedS3Params, expect.any(Function));
+  });
+  it('upload returns an error', () => {
+    process.env.S3_BUCKET = 'wrongBucket';
+    const s3ParamsWithWrongBucket = { ...expectedS3Params, Bucket: 'wrongBucket' };
+
+    upload(req, res);
+
+    expect(res.json).toHaveBeenCalledWith({ error: 'error' });
+    expect(s3.getSignedUrl).toHaveBeenCalledWith('putObject', s3ParamsWithWrongBucket, expect.any(Function));
   });
 });

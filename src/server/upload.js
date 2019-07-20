@@ -13,9 +13,9 @@ const upload = (req, res) => {
     Tagging: '',
   };
 
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if (err) {
-      res.json({ err });
+  s3.getSignedUrl('putObject', s3Params, (error, data) => {
+    if (error) {
+      res.json({ error });
     }
     res.json(data);
   });

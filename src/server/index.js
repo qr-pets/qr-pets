@@ -9,7 +9,6 @@ const port = process.env.PORT || 3333;
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, parameterLimit: 1000000 }));
 
-app.get('/hello', (req, res) => res.send('hello'));
 app.post('/upload', upload);
 
 // eslint-disable-next-line no-console
