@@ -2,12 +2,16 @@
 
 exports[`AdminPetForm renders as expected 1`] = `
 <div>
-  <Upload
-    handleFileSelect={[Function]}
+  <WithStyles(Input)
+    disableUnderline={true}
+    id="file-chooser"
+    onChange={[Function]}
+    type="file"
   />
-  <AdminTextInput
-    handleChange={[Function]}
-    handleUpdate={[Function]}
+  <WithStyles(Input)
+    id="tag-input"
+    placeholder="comma separated tags"
+    type="text"
   />
   <WithStyles(Button)
     color="primary"

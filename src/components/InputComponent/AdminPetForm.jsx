@@ -1,8 +1,7 @@
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import React from 'react';
-import Upload from '../Upload';
-import AdminTextInput from './AdminTextInput';
+import Input from '@material-ui/core/Input';
 
 class AdminPetForm extends React.Component {
   constructor(props) {
@@ -43,21 +42,33 @@ class AdminPetForm extends React.Component {
     const { tagList, fileList } = this.state;
     const file = fileList[0];
     const { name, type } = file;
-    const tags = tagList.map(tag => `${tag}&`).join(''); // values as tag keys with no value
+    const tags = tagList.map(tag => `${tag}&`).join('').slice(0, -1); // values as tag keys with no value
     const signedUrl = await axios.post('/upload', { name, type });
 
     await axios.put(signedUrl.data, file, { headers: { 'x-amz-tagging': tags } });
   }
 
   render() {
-    const { hasChanged } = this.state;
+    const { fileList } = this.state;
+    const btnDisable = fileList.length === 0;
     return (
       <div>
-        <Upload handleFileSelect={this.handleFileSelect} />
-        <AdminTextInput handleUpdate={this.handleTagsUpdate} handleChange={this.handleTextChange} />
+        <Input
+          onChange={this.handleFileSelect}
+          type="file"
+          id="file-chooser"
+          disableUnderline
+        />
+        <Input
+          onChange={this.handleChange}
+          type="text"
+          onBlur={this.handleUpdate}
+          placeholder="comma separated tags"
+          id="tag-input"
+        />
         <Button
           color="primary"
-          disabled={!hasChanged}
+          disabled={btnDisable}
           onClick={this.saveForm}
           variant="contained"
         >
