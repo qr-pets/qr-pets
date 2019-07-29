@@ -9,7 +9,7 @@
     "build": "react-scripts build",
     "lint": "eslint --ext .jsx --ext .js ./src",
     "test": "react-scripts test",
-    "coverage": "npm test -- --coverage"
+    "coverage": "npm test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"
