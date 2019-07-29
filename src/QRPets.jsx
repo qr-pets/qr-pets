@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import TextLabel from './components/InfoComponent/TextLabel';
 import TabbedPage from './components/InfoComponent/TabbedPage';
 import Image from './components/ImageComponent/Image';
@@ -11,22 +13,35 @@ const vidString = 'youtube.com\nyoutube.com\nyoutube.com\nyoutube.com';
 class QRPets extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      // foundation: '',
-      petName: 'moomoo',
-      petId: 1,
+      imageUrl: '',
+      petName: '',
     };
   }
 
+  async componentDidMount() {
+    const { match: { params } } = this.props;
+    const { qrId } = params;
+
+    const { data } = await axios.get(`/profile/${qrId}`);
+    const { imageUrl, petName } = data;
+
+    this.setState({
+      imageUrl,
+      petName,
+    });
+  }
+
   render() {
-    const { petName, petId } = this.state;
+    const { imageUrl, petName } = this.state;
     return (
       <div className="App">
         <div className="container">
           <h1 className="titleHeader">Adopt a pet today!</h1>
           <div className="section" id="basicInfo">
             <div className="section" id="profilePicture">
-              <Image imageClassName="thumbnail" src={`https://s3.us-east-2.amazonaws.com/qr-pets-images/${petName}_${petId}.JPG`} alt={petName} width={100} height={100} />
+              <Image imageClassName="thumbnail" src={imageUrl} alt={petName} width={100} height={100} />
             </div>
             <div className="section" id="basicTextInfo">
               <TextLabel label="Name" value="MooMoo" />
@@ -42,8 +57,12 @@ class QRPets extends Component {
   }
 }
 
-// QRPets.defaultProps = {
-//   foundation: 'today',
-// };
+QRPets.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      qrId: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};
 
 export default QRPets;

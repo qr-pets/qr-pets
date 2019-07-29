@@ -9,7 +9,7 @@ export default () => (
   <div className="App">
     <Router>
       <Switch>
-        <Route exact path="/" component={QRPets} />
+        <Route exact path="/profile/:qrId" component={QRPets} />
         <Route exact path="/admin" component={Admin} />
         <Route component={PageNotFound} />
       </Switch>
