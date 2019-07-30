@@ -23,7 +23,6 @@ class QRPets extends Component {
   async componentDidMount() {
     const { match: { params } } = this.props;
     const { qrId } = params;
-
     const { data } = await axios.get(`/profile/${qrId}`);
     const { imageUrl, petName } = data;
 
@@ -35,6 +34,7 @@ class QRPets extends Component {
 
   render() {
     const { imageUrl, petName } = this.state;
+
     return (
       <div className="App">
         <div className="container">
