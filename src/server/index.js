@@ -2,7 +2,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
-const profile = require('./profile');
+const { profile } = require('./profile');
 const upload = require('./upload');
 
 const BUILD_PATH = '../../build';

@@ -7,20 +7,17 @@ class AdminPetForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasChanged: false,
       fileList: [],
       tagList: [],
     };
     this.handleFileSelect = this.handleFileSelect.bind(this);
     this.handleTagsUpdate = this.handleTagsUpdate.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
     this.saveForm = this.saveForm.bind(this);
   }
 
   handleFileSelect(files) {
     this.setState({
       fileList: files,
-      hasChanged: true,
     });
   }
 
@@ -28,13 +25,6 @@ class AdminPetForm extends React.Component {
     const tags = tagsString.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
     this.setState({
       tagList: tags,
-      hasChanged: true,
-    });
-  }
-
-  handleTextChange(changed) {
-    this.setState({
-      hasChanged: changed,
     });
   }
 

@@ -5,10 +5,7 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import AdminPetForm from '../../InputComponent/AdminPetForm';
 
-jest.mock('axios', () => ({
-  post: jest.fn().mockReturnValue({ data: 'someUrl' }),
-  put: jest.fn().mockReturnValue({ data: ['something'] }),
-}));
+jest.mock('axios');
 
 describe('AdminPetForm', () => {
   const file = { name: 'moomoo', type: 'html/jpeg' };
@@ -16,6 +13,9 @@ describe('AdminPetForm', () => {
   const firstPicture = { name: 'frodo', type: 'html/jpeg' };
   let wrapper;
   let wrapperInst;
+
+  axios.post.mockReturnValue({ data: 'someUrl' });
+  axios.put.mockReturnValue({ data: 'someUrl' });
 
   beforeEach(() => {
     wrapper = shallow(<AdminPetForm />);
@@ -26,30 +26,21 @@ describe('AdminPetForm', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it('setState {image list, hasChanged} on handlefileSelect', () => {
+  it('setState {image list} on handlefileSelect', () => {
     const img = [file];
     const fileSelectSpy = jest.spyOn(wrapperInst, 'handleFileSelect');
     wrapperInst.handleFileSelect(img);
     expect(fileSelectSpy).toHaveBeenCalledTimes(1);
     expect(wrapper.state().fileList).toEqual(img);
-    expect(wrapper.state().hasChanged).toEqual(true);
   });
 
-  it('setState {tagList, hasChanged} on handleTagsUpdate', () => {
+  it('setState {tagList} on handleTagsUpdate', () => {
     const tagsString = 'guinea pig, moomoo, fluffy,';
     const tagsState = ['guinea pig', 'moomoo', 'fluffy'];
     const tagsUpdateSpy = jest.spyOn(wrapperInst, 'handleTagsUpdate');
     wrapperInst.handleTagsUpdate(tagsString);
     expect(tagsUpdateSpy).toHaveBeenCalledTimes(1);
     expect(wrapper.state().tagList).toEqual(tagsState);
-    expect(wrapper.state().hasChanged).toEqual(true);
-  });
-
-  it('setState {hasChanged} on handleTextChange', () => {
-    const textUpdateSpy = jest.spyOn(wrapperInst, 'handleTextChange');
-    wrapperInst.handleTextChange(true);
-    expect(textUpdateSpy).toHaveBeenCalledTimes(1);
-    expect(wrapper.state().hasChanged).toEqual(true);
   });
 
   it('stores file from input to state', () => {
