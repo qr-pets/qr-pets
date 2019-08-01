@@ -2,17 +2,23 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import React from 'react';
 import Input from '@material-ui/core/Input';
+import PropTypes from 'prop-types';
 
 class AdminPetForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fileList: [],
-      tagList: [],
+      tagsString: '',
     };
     this.handleFileSelect = this.handleFileSelect.bind(this);
-    this.handleTagsUpdate = this.handleTagsUpdate.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
     this.saveForm = this.saveForm.bind(this);
+  }
+
+  componentDidMount() {
+    const { tags } = this.props;
+    this.setState({ tagsString: tags });
   }
 
   handleFileSelect(files) {
@@ -21,26 +27,26 @@ class AdminPetForm extends React.Component {
     });
   }
 
-  handleTagsUpdate(tagsString) {
-    const tags = tagsString.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+  handleTextChange({ target }) {
     this.setState({
-      tagList: tags,
+      tagsString: target.value,
     });
   }
 
   async saveForm() {
-    const { tagList, fileList } = this.state;
+    const { tagsString, fileList } = this.state;
     const file = fileList[0];
     const { name, type } = file;
-    const tags = tagList.map(tag => `${tag}&`).join('').slice(0, -1); // values as tag keys with no value
+    const tagsArray = tagsString.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+    const tags = tagsArray.map(tag => `${tag}&`).join('').slice(0, -1); // values as tag keys with no value
     const signedUrl = await axios.post('/upload', { name, type });
 
     await axios.put(signedUrl.data, file, { headers: { 'x-amz-tagging': tags } });
   }
 
   render() {
-    const { fileList } = this.state;
-    const btnDisable = fileList.length === 0;
+    const { fileList, tagsString } = this.state;
+    const { tags } = this.props;
     return (
       <div>
         <Input
@@ -50,15 +56,15 @@ class AdminPetForm extends React.Component {
           disableUnderline
         />
         <Input
-          onChange={this.handleChange}
+          onChange={this.handleTextChange}
           type="text"
-          onBlur={this.handleUpdate}
           placeholder="comma separated tags"
           id="tag-input"
+          value={tagsString}
         />
         <Button
           color="primary"
-          disabled={btnDisable}
+          disabled={!(fileList.length > 0 || tagsString !== tags)}
           onClick={this.saveForm}
           variant="contained"
         >
@@ -68,5 +74,13 @@ class AdminPetForm extends React.Component {
     );
   }
 }
+
+AdminPetForm.propTypes = {
+  tags: PropTypes.string,
+};
+
+AdminPetForm.defaultProps = {
+  tags: '',
+};
 
 export default AdminPetForm;

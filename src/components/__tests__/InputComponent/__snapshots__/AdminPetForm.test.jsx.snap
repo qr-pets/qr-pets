@@ -10,8 +10,10 @@ exports[`AdminPetForm renders as expected 1`] = `
   />
   <WithStyles(Input)
     id="tag-input"
+    onChange={[Function]}
     placeholder="comma separated tags"
     type="text"
+    value=""
   />
   <WithStyles(Button)
     color="primary"

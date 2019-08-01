@@ -9,7 +9,8 @@ jest.mock('axios');
 
 describe('AdminPetForm', () => {
   const file = { name: 'moomoo', type: 'html/jpeg' };
-  const tagArray = ['guinea pig', 'moomoo', 'fluffy'];
+  // const tagArray = ['guinea pig', 'moomoo', 'fluffy'];
+  const tagsString = 'guinea pig, moomoo, fluffy';
   const firstPicture = { name: 'frodo', type: 'html/jpeg' };
   let wrapper;
   let wrapperInst;
@@ -34,13 +35,24 @@ describe('AdminPetForm', () => {
     expect(wrapper.state().fileList).toEqual(img);
   });
 
-  it('setState {tagList} on handleTagsUpdate', () => {
-    const tagsString = 'guinea pig, moomoo, fluffy,';
-    const tagsState = ['guinea pig', 'moomoo', 'fluffy'];
-    const tagsUpdateSpy = jest.spyOn(wrapperInst, 'handleTagsUpdate');
-    wrapperInst.handleTagsUpdate(tagsString);
-    expect(tagsUpdateSpy).toHaveBeenCalledTimes(1);
-    expect(wrapper.state().tagList).toEqual(tagsState);
+  it('setState on tags text change', () => {
+    const t = { target: { value: 'guinea pig, moomoo, floof' } };
+    wrapperInst.handleTextChange(t);
+    expect(wrapper.state().tagsString).toEqual(t.target.value);
+  });
+
+  it('button is disabled if tags have not changed', () => {
+    const ButtonComponent = wrapper.find(Button);
+    wrapper.setProps({ tags: 'pet' });
+    wrapper.setState({ tagsString: 'pet' });
+    expect(ButtonComponent.props().disabled).toEqual(true);
+  });
+
+  it('button is enabled if tags have changed', () => {
+    const ButtonComponent = wrapper.find(Button);
+    wrapper.setProps({ tags: 'pet' });
+    wrapper.setState({ tagsString: 'Rolo' });
+    expect(ButtonComponent.props().disabled).toEqual(false);
   });
 
   it('stores file from input to state', () => {
@@ -65,10 +77,9 @@ describe('AdminPetForm', () => {
     expect(ButtonComponent.props().disabled).toEqual(false);
   });
 
-  it('sucessfully uploads to s3 with saveForm function', async () => {
-    wrapper.setState({ fileList: [file], tagList: tagArray });
+  it('successfully uploads to s3 with saveForm function', async () => {
+    wrapper.setState({ fileList: [file], tagsString });
     const { name, type } = file;
-    // const tags = tagArray.map(tag => `${tag}&`).join('');
     const tags = 'guinea pig&moomoo&fluffy';
     const headers = { headers: { 'x-amz-tagging': tags } };
     await wrapperInst.saveForm();

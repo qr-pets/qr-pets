@@ -5,7 +5,7 @@ export default () => (
   <div className="App">
     <div className="container">
       <h1 className="titleHeader">Adopt a pet today!</h1>
-      <AdminPetForm />
+      <AdminPetForm tags="aaa" />
     </div>
   </div>
 );
