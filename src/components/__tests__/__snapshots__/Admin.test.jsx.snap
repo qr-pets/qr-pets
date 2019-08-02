@@ -13,7 +13,7 @@ exports[`Admin renders as expected 1`] = `
       Adopt a pet today!
     </h1>
     <AdminPetForm
-      tags="aaa"
+      tags=""
     />
   </div>
 </div>

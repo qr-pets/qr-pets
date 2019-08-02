@@ -9,7 +9,6 @@ jest.mock('axios');
 
 describe('AdminPetForm', () => {
   const file = { name: 'moomoo', type: 'html/jpeg' };
-  // const tagArray = ['guinea pig', 'moomoo', 'fluffy'];
   const tagsString = 'guinea pig, moomoo, fluffy';
   const firstPicture = { name: 'frodo', type: 'html/jpeg' };
   let wrapper;
@@ -39,22 +38,6 @@ describe('AdminPetForm', () => {
     const t = { target: { value: 'guinea pig, moomoo, floof' } };
     wrapperInst.handleTextChange(t);
     expect(wrapper.state().tagsString).toEqual(t.target.value);
-  });
-
-  it('button is disabled if tags have not changed', () => {
-    const ButtonComponent = wrapper.find(Button);
-    wrapper.setProps({ tags: 'pet' });
-    wrapper.setState({ tagsString: 'pet' });
-    expect(ButtonComponent.props().disabled).toEqual(true);
-  });
-
-  it('button is enabled if tags have changed', () => {
-    wrapper.setProps({ tags: 'pet' });
-    wrapper.setState({ tagsString: 'Rolo' });
-
-    const ButtonComponent = wrapper.find(Button);
-
-    expect(ButtonComponent.props().disabled).toEqual(false);
   });
 
   it('stores file from input to state', () => {

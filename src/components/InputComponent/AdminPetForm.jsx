@@ -47,6 +47,7 @@ class AdminPetForm extends React.Component {
   render() {
     const { fileList, tagsString } = this.state;
     const { tags } = this.props;
+
     return (
       <div>
         <Input
@@ -64,7 +65,7 @@ class AdminPetForm extends React.Component {
         />
         <Button
           color="primary"
-          disabled={!(fileList.length > 0 || tagsString !== tags)}
+          disabled={(fileList.length === 0)}
           onClick={this.saveForm}
           variant="contained"
         >
