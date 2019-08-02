@@ -49,9 +49,11 @@ describe('AdminPetForm', () => {
   });
 
   it('button is enabled if tags have changed', () => {
-    const ButtonComponent = wrapper.find(Button);
     wrapper.setProps({ tags: 'pet' });
     wrapper.setState({ tagsString: 'Rolo' });
+
+    const ButtonComponent = wrapper.find(Button);
+
     expect(ButtonComponent.props().disabled).toEqual(false);
   });
 
