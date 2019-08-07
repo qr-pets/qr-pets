@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdminPetForm renders as expected 1`] = `
+<div>
+  <WithStyles(Input)
+    disableUnderline={true}
+    id="file-chooser"
+    onChange={[Function]}
+    type="file"
+  />
+  <WithStyles(Input)
+    id="tag-input"
+    onChange={[Function]}
+    placeholder="comma separated tags"
+    type="text"
+    value=""
+  />
+  <WithStyles(Button)
+    color="primary"
+    disabled={true}
+    onClick={[Function]}
+    variant="contained"
+  >
+    Save Form
+  </WithStyles(Button)>
+</div>
+`;

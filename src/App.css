@@ -6,9 +6,14 @@ body{
 	width: inherit;
 }
 
+input{
+	border-color: #ccc;
+}
+
 #root{
 	width: inherit;
 }
+
 .App {
   display: flex;
   align-items: center;
@@ -48,30 +53,5 @@ body{
 	text-align: left;
 }
 
-.tabs{
-	border: 1px solid #ccc;
-	background-color: #f1f1f1;
-}
 
-.tab{
-	background-color: inherit;
-	border: none;
-	outline: none;
-	padding: 14px 16px;
-}
 
-.selected{
-	background-color: yellow;
-}
-
-.infoTab{
-	padding: 6px 12px;
-	border: 1px solid #ccc;
-	border-top: none;
-	overflow-wrap: break-word;
-	white-space: pre-line;
-}
-
-.hidden{
-	display: none;
-}

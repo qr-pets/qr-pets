@@ -2,25 +2,14 @@
   "name": "qr-pets",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
-    "dotenv": "^7.0.0",
-    "express": "^4.16.4",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.0"
-  },
   "scripts": {
     "client": "react-scripts start",
-    "server": "nodemon server.js",
+    "server": "nodemon ./src/server",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "build": "react-scripts build",
     "lint": "eslint --ext .jsx --ext .js ./src",
     "test": "react-scripts test",
-    "coverage": "npm test -- --coverage",
-    "eject": "react-scripts eject"
+    "coverage": "npm test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -31,6 +20,19 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "aws-sdk": "^2.444.0",
+    "axios": "^0.19.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.1"
+  },
   "devDependencies": {
     "concurrently": "^4.1.0",
     "enzyme": "^3.9.0",
@@ -45,8 +47,9 @@
   "jest": {
     "collectCoverageFrom": [
       "**/src/**/*.{js,jsx}",
-      "!src/serviceWorker.js",
-      "!src/index.js"
+      "!src/index.js",
+      "!src/server/index.js",
+      "!src/server/s3.js"
     ]
   },
   "proxy": "http://localhost:3333/"

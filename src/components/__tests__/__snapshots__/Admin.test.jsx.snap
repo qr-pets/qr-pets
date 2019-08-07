@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Admin renders as expected 1`] = `
+<div
+  className="container"
+>
+  <h1
+    className="titleHeader"
+  >
+    Adopt a pet today!
+  </h1>
+  <AdminPetForm
+    tags=""
+  />
+</div>
+`;
