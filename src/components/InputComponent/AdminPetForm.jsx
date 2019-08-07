@@ -7,18 +7,16 @@ import PropTypes from 'prop-types';
 class AdminPetForm extends React.Component {
   constructor(props) {
     super(props);
+
+    const { tags } = this.props;
+
     this.state = {
       fileList: [],
-      tagsString: '',
+      tagsString: tags,
     };
     this.handleFileSelect = this.handleFileSelect.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.saveForm = this.saveForm.bind(this);
-  }
-
-  componentDidMount() {
-    const { tags } = this.props;
-    this.setState({ tagsString: tags });
   }
 
   handleFileSelect(files) {
@@ -46,7 +44,8 @@ class AdminPetForm extends React.Component {
 
   render() {
     const { fileList, tagsString } = this.state;
-    const { tags } = this.props;
+    // const { tags } = this.props;
+    // pass tags as prop to adminpetform; check if props.tags === state.tags for button state
 
     return (
       <div>
