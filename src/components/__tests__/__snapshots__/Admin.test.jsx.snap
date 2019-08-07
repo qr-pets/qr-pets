@@ -2,19 +2,15 @@
 
 exports[`Admin renders as expected 1`] = `
 <div
-  className="App"
+  className="container"
 >
-  <div
-    className="container"
+  <h1
+    className="titleHeader"
   >
-    <h1
-      className="titleHeader"
-    >
-      Adopt a pet today!
-    </h1>
-    <AdminPetForm
-      tags=""
-    />
-  </div>
+    Adopt a pet today!
+  </h1>
+  <AdminPetForm
+    tags=""
+  />
 </div>
 `;

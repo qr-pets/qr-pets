@@ -36,22 +36,20 @@ class QRPets extends Component {
     const { imageUrl, petName } = this.state;
 
     return (
-      <div className="App">
-        <div className="container">
-          <h1 className="titleHeader">Adopt a pet today!</h1>
-          <div className="section" id="basicInfo">
-            <div className="section" id="profilePicture">
-              <Image imageClassName="thumbnail" src={imageUrl} alt={petName} width={100} height={100} />
-            </div>
-            <div className="section" id="basicTextInfo">
-              <TextLabel label="Name" value="MooMoo" />
-              <TextLabel label="Age" value="3" />
-              <TextLabel label="Breed" value="Guinea Pig" />
-            </div>
+      <div className="container">
+        <h1 className="titleHeader">Adopt a pet today!</h1>
+        <div className="section" id="basicInfo">
+          <div className="section" id="profilePicture">
+            <Image imageClassName="thumbnail" src={imageUrl} alt={petName} width={100} height={100} />
           </div>
-          <br />
-          <TabbedPage tabs={['info', 'photos', 'videos']} info={[infoString, picString, vidString]} />
+          <div className="section" id="basicTextInfo">
+            <TextLabel label="Name" value="MooMoo" />
+            <TextLabel label="Age" value="3" />
+            <TextLabel label="Breed" value="Guinea Pig" />
+          </div>
         </div>
+        <br />
+        <TabbedPage tabs={['info', 'photos', 'videos']} info={[infoString, picString, vidString]} />
       </div>
     );
   }
