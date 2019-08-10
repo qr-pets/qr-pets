@@ -9,11 +9,9 @@ jest.mock('axios');
 
 describe('QRPets', () => {
   let wrapper;
-  const props = {
-    match: {
-      params: {
-        qrId: '10',
-      },
+  const match = {
+    params: {
+      qrId: '10',
     },
   };
 
@@ -25,7 +23,7 @@ describe('QRPets', () => {
   });
 
   beforeEach(async () => {
-    wrapper = shallow(<QRPets {...props} />);
+    wrapper = shallow(<QRPets match={match} />);
     await wrapper.instance().componentDidMount();
   });
 

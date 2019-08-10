@@ -13,12 +13,12 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, parameterLimit: 1000000 }));
 app.use(express.static(path.join(__dirname, BUILD_PATH)));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, BUILD_PATH, 'index.html'));
-});
-
 app.use('/profile', profile);
 app.post('/upload', upload);
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, BUILD_PATH, 'index.html'));
+});
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Listening on port ${port}`));

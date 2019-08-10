@@ -9,7 +9,7 @@ exports[`App renders as expected 1`] = `
       <Route
         component={[Function]}
         exact={true}
-        path="/profile/:qrId"
+        path="/pets/:qrId"
       />
       <Route
         component={[Function]}

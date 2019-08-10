@@ -2,26 +2,26 @@
 
 exports[`AdminPetForm renders as expected 1`] = `
 <div>
-  <WithStyles(Input)
+  <WithStyles(ForwardRef(Input))
     disableUnderline={true}
     id="file-chooser"
     onChange={[Function]}
     type="file"
   />
-  <WithStyles(Input)
+  <WithStyles(ForwardRef(Input))
     id="tag-input"
     onChange={[Function]}
     placeholder="comma separated tags"
     type="text"
     value=""
   />
-  <WithStyles(Button)
+  <WithStyles(ForwardRef(Button))
     color="primary"
     disabled={true}
     onClick={[Function]}
     variant="contained"
   >
     Save Form
-  </WithStyles(Button)>
+  </WithStyles(ForwardRef(Button))>
 </div>
 `;

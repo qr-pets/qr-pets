@@ -6,14 +6,12 @@ import Tabs from '@material-ui/core/Tabs';
 import TabbedPage from '../../InfoComponent/TabbedPage';
 
 describe('TabbedPage', () => {
-  const props = {
-    tabs: ['page1', 'page2'],
-    info: ['text1', 'text2'],
-  };
+  const tabs = ['page1', 'page2'];
+  const info = ['text1', 'text2'];
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<TabbedPage {...props} />);
+    wrapper = shallow(<TabbedPage info={info} tabs={tabs} />);
   });
 
   it('renders as expected', () => {

@@ -30,7 +30,7 @@ class TabbedPage extends Component {
     return (
       <div className="tabbedContainer">
         <Tabs value={onTab} onChange={this.handleTabClick}>
-          {tabs.map(tab => <Tab key={tab} label={tab} />)}
+          {tabs.map((tab) => <Tab key={tab} label={tab} />)}
         </Tabs>
         {this.renderInfoText()}
       </div>
