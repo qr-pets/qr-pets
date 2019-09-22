@@ -6,7 +6,7 @@ const {
   AWS_REGION,
 } = process.env;
 
-const ddb = new AWS.DynamoDB({
+const ddb = new AWS.DynamoDB.DocumentClient({
   accessKeyId: AWS_ACCESS_KEY,
   secretAccessKey: AWS_SECRET_KEY,
   region: AWS_REGION,

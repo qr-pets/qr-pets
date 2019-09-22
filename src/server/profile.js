@@ -3,23 +3,15 @@ const ddb = require('./dynamodb');
 
 const profile = express();
 const petinfo = (req, res) => {
-  const getPetParams = { Key: { petId: { N: req.params.qrId } }, TableName: 'qr-pets' };
-  ddb.getItem(getPetParams, (err, data) => {
+  const getPetParams = { Key: { petId: parseInt(req.params.qrId, 10) }, TableName: 'qr-pets' };
+  ddb.get(getPetParams, (err, data) => {
     if (err) {
-      console.log(err);
+      console.error(err);
     } else {
-      console.log(data);
-      res.send({
-        info: data.Item.info,
-        name: data.Item.name,
-        qrId: data.Item.qrId,
-        s3Url: data.Item.s3Url,
-        petId: data.Item.petId,
-      });
+      res.send(data.Item);
     }
   });
 };
-// const fetchPetProfile = (req, res) => {console.log('here')};
 profile.get('/:qrId', petinfo);
 
 module.exports = {
