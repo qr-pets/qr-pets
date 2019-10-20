@@ -17,8 +17,13 @@ describe('QRPets', () => {
 
   axios.get.mockResolvedValue({
     data: {
-      imageUrl: 'someUrl',
-      petName: 'someName',
+      name: 'MooMoo',
+      s3Url: 'someUrl',
+      info: {
+        age: '3',
+        breed: 'Guinea Pig',
+        info: 'testInfo',
+      },
     },
   });
 
@@ -33,7 +38,16 @@ describe('QRPets', () => {
 
   it('fetches profile data based on qrId', async () => {
     expect(axios.get).toHaveBeenCalledWith('/profile/10');
-    expect(wrapper.state().imageUrl).toBe('someUrl');
-    expect(wrapper.state().petName).toBe('someName');
+    expect(wrapper.state()).toEqual({
+      data: {
+        name: 'MooMoo',
+        s3Url: 'someUrl',
+        info: {
+          age: '3',
+          breed: 'Guinea Pig',
+          info: 'testInfo',
+        },
+      },
+    });
   });
 });
