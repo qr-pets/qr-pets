@@ -19,15 +19,15 @@ class AdminPetForm extends React.Component {
     this.saveForm = this.saveForm.bind(this);
   }
 
-  handleFileSelect(files) {
+  handleFileSelect({ target: { files } }) {
     this.setState({
       fileList: files,
     });
   }
 
-  handleTextChange({ target }) {
+  handleTextChange({ target: { value } }) {
     this.setState({
-      tagsString: target.value,
+      tagsString: value,
     });
   }
 
@@ -44,8 +44,6 @@ class AdminPetForm extends React.Component {
 
   render() {
     const { fileList, tagsString } = this.state;
-    // const { tags } = this.props;
-    // pass tags as prop to adminpetform; check if props.tags === state.tags for button state
 
     return (
       <div>
