@@ -1,7 +1,20 @@
-import { fetchPetProfile } from '../profile';
+import { petinfo } from '../profile';
 
+jest.mock('../AWS/dynamoDb', () => ({
+  get: jest.fn((params, callbackSpy) => {
+    if (params.Key.petId === 123) {
+      return callbackSpy(null, { Item: { name: 'moomoo' } });
+    }
+
+    return callbackSpy('error');
+  }),
+}));
 describe('profile route', () => {
-  const req = {};
+  const req = {
+    params: {
+      qrId: '123',
+    },
+  };
   const res = {
     send: jest.fn(),
   };
@@ -10,12 +23,22 @@ describe('profile route', () => {
     jest.clearAllMocks();
   });
 
-  it('fetchPetProfile returns hardcoded image and petname', () => {
-    fetchPetProfile(req, res);
+  it('petinfo returns item by petId', () => {
+    petinfo(req, res);
 
     expect(res.send).toHaveBeenCalledWith({
-      imageUrl: 'https://s3.us-east-2.amazonaws.com/qr-pets-images/moomoo_1.JPG',
-      petName: 'moomoo',
+      name: 'moomoo',
+    });
+  });
+  it('petinfo returns an error', () => {
+    const badParams = {
+      params: {
+      },
+    };
+    petinfo(badParams, res);
+
+    expect(res.send).not.toHaveBeenCalledWith({
+      name: 'moomoo',
     });
   });
 });

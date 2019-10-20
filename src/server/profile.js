@@ -1,14 +1,21 @@
 const express = require('express');
+const documentClient = require('./AWS/dynamoDb');
 
 const profile = express();
-const fetchPetProfile = (req, res) => res.send({
-  imageUrl: 'https://s3.us-east-2.amazonaws.com/qr-pets-images/moomoo_1.JPG',
-  petName: 'moomoo',
-});
+const petinfo = (req, res) => {
+  const getPetParams = { Key: { petId: parseInt(req.params.qrId, 10) }, TableName: 'qr-pets' };
 
-profile.get('/:qrId', fetchPetProfile);
+  documentClient.get(getPetParams, (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.send(data.Item);
+    }
+  });
+};
+profile.get('/:qrId', petinfo);
 
 module.exports = {
-  fetchPetProfile,
+  petinfo,
   profile,
 };

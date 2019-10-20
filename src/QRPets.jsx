@@ -6,50 +6,48 @@ import TabbedPage from './components/InfoComponent/TabbedPage';
 import Image from './components/ImageComponent/Image';
 import './App.css';
 
-const infoString = 'this is test info.\nlorem ipsum something something somethingsomething\n teset test test\nsay something about the animals!!!!!';
 const picString = 'pic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\n';
 const vidString = 'youtube.com\nyoutube.com\nyoutube.com\nyoutube.com';
 
 class QRPets extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      imageUrl: '',
-      petName: '',
+      data: {
+        info: {},
+      },
     };
   }
 
   async componentDidMount() {
     const { match: { params } } = this.props;
-    const { qrId } = params;
-    const { data } = await axios.get(`/profile/${qrId}`);
-    const { imageUrl, petName } = data;
+    const qid = params.qrId;
+    const { data } = await axios.get(`/profile/${qid}`);
 
-    this.setState({
-      imageUrl,
-      petName,
-    });
+    this.setState({ data });
   }
 
   render() {
-    const { imageUrl, petName } = this.state;
+    const { data } = this.state;
+    const { info, name, s3Url } = data;
+    const { age, breed, info: description } = info;
 
     return (
       <div className="container">
         <h1 className="titleHeader">Adopt a pet today!</h1>
         <div className="section" id="basicInfo">
           <div className="section" id="profilePicture">
-            <Image imageClassName="thumbnail" src={imageUrl} alt={petName} width={100} height={100} />
+            <Image imageClassName="thumbnail" src={s3Url} alt={name} width={100} height={100} />
           </div>
           <div className="section" id="basicTextInfo">
-            <TextLabel label="Name" value="MooMoo" />
-            <TextLabel label="Age" value="3" />
-            <TextLabel label="Breed" value="Guinea Pig" />
+            <TextLabel label="Name" value={name} />
+            <TextLabel label="Age" value={age} />
+            <TextLabel label="Breed" value={breed} />
           </div>
         </div>
         <br />
-        <TabbedPage tabs={['info', 'photos', 'videos']} info={[infoString, picString, vidString]} />
+        <TabbedPage tabs={['info', 'photos', 'videos']} info={[description, picString, vidString]} />
       </div>
     );
   }

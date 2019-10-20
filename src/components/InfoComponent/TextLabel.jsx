@@ -8,8 +8,8 @@ const TextLabel = ({ label, value }) => (
 );
 
 TextLabel.propTypes = {
-  label: PropTypes.string,
-  value: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 TextLabel.defaultProps = {

@@ -18,7 +18,7 @@ exports[`QRPets renders as expected 1`] = `
       id="profilePicture"
     >
       <Image
-        alt="someName"
+        alt="MooMoo"
         h="100"
         height={100}
         imageClassName="thumbnail"
@@ -49,10 +49,7 @@ exports[`QRPets renders as expected 1`] = `
   <TabbedPage
     info={
       Array [
-        "this is test info.
-lorem ipsum something something somethingsomething
- teset test test
-say something about the animals!!!!!",
+        "testInfo",
         "pic pic pic
 pic pic pic
 pic pic pic
