@@ -29,7 +29,7 @@ describe('AdminPetForm', () => {
   it('setState {image list} on handlefileSelect', () => {
     const img = [file];
     const fileSelectSpy = jest.spyOn(wrapperInst, 'handleFileSelect');
-    wrapperInst.handleFileSelect(img);
+    wrapperInst.handleFileSelect({ target: { files: img } });
     expect(fileSelectSpy).toHaveBeenCalledTimes(1);
     expect(wrapper.state().fileList).toEqual(img);
   });
@@ -44,7 +44,7 @@ describe('AdminPetForm', () => {
     const InputComponent = wrapper.find('#file-chooser');
     const files = [firstPicture];
 
-    InputComponent.simulate('change', files);
+    InputComponent.simulate('change', { target: { files } });
 
     expect(wrapper.state().fileList).toEqual([firstPicture]);
   });
