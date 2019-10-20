@@ -1,5 +1,5 @@
 const express = require('express');
-const documentClient = require('./dynamodb');
+const documentClient = require('./AWS/dynamoDb');
 
 const profile = express();
 const petinfo = (req, res) => {

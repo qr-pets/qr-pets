@@ -1,4 +1,4 @@
-const s3 = require('./s3');
+const s3 = require('./AWS/s3');
 
 const upload = (req, res) => {
   const { S3_BUCKET } = process.env;

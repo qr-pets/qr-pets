@@ -1,7 +1,7 @@
 import upload from '../upload';
-import s3 from '../s3';
+import s3 from '../AWS/s3';
 
-jest.mock('../s3', () => ({
+jest.mock('../AWS/s3', () => ({
   getSignedUrl: jest.fn((operation, params, callbackSpy) => {
     if (params.Bucket === 'testBucket') {
       return callbackSpy(null, 'sup');

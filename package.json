@@ -49,7 +49,7 @@
       "**/src/**/*.{js,jsx}",
       "!src/index.js",
       "!src/server/index.js",
-      "!src/server/s3.js"
+      "!src/server/AWS/**"
     ]
   },
   "proxy": "http://localhost:3333/"
