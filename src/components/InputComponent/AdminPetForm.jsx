@@ -35,11 +35,17 @@ class AdminPetForm extends React.Component {
     const { tagsString, fileList } = this.state;
     const file = fileList[0];
     const { name, type } = file;
+    const petId = `${new Date().toISOString()}-${name}`;
     const tagsArray = tagsString.split(',').map((tag) => tag.trim()).filter((tag) => tag !== '');
     const tags = tagsArray.map((tag) => `${tag}&`).join('').slice(0, -1); // values as tag keys with no value
-    const signedUrl = await axios.post('/upload', { name, type });
 
-    await axios.put(signedUrl.data, file, { headers: { 'x-amz-tagging': tags } });
+    try {
+      const { data } = await axios.post('/upload', { name: petId, type });
+      await axios.put(data, file, { headers: { 'x-amz-tagging': tags } });
+      await axios.put('/upload', { name, petId });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {

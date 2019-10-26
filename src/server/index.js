@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const { profile } = require('./profile');
-const upload = require('./upload');
+const { upload } = require('./upload');
 
 const BUILD_PATH = '../../build';
 const app = express();
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, parameterLimit: 
 app.use(express.static(path.join(__dirname, BUILD_PATH)));
 
 app.use('/profile', profile);
-app.post('/upload', upload);
+app.use('/upload', upload);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, BUILD_PATH, 'index.html'));
