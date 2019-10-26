@@ -6,10 +6,10 @@ const upload = express();
 const getSignedUrl = (req, res) => {
   const { S3_BUCKET } = process.env;
   const { body } = req;
-  const { name, type } = body;
+  const { id, type } = body;
   const s3Params = {
     Bucket: S3_BUCKET,
-    Key: name,
+    Key: id,
     Expires: 60,
     ContentType: type,
     ACL: 'public-read',
@@ -25,7 +25,7 @@ const getSignedUrl = (req, res) => {
 };
 
 const savePetInfo = async (req, res) => {
-  const { name } = req.body;
+  const { id } = req.body;
   const response = await documentClient.put({
     TableName: 'qr-pets',
     Item: {
@@ -34,8 +34,7 @@ const savePetInfo = async (req, res) => {
         breed: 'cat',
         info: 'sup',
       },
-      name,
-      petId: 3,
+      id,
     },
   }).promise();
 
@@ -48,4 +47,5 @@ upload.put('/', savePetInfo);
 module.exports = {
   upload,
   getSignedUrl,
+  savePetInfo,
 };

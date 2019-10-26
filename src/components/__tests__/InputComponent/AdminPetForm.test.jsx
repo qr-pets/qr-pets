@@ -14,7 +14,12 @@ describe('AdminPetForm', () => {
   let wrapper;
   let wrapperInst;
 
-  axios.post.mockReturnValue({ data: 'someUrl' });
+  const mockedDate = new Date(2017, 11, 10);
+  global.Date = jest.fn(() => mockedDate);
+
+  axios.post.mockImplementation((url, payload) => (payload.id.includes('badId')
+    ? Promise.reject(new Error('error'))
+    : ({ data: 'someUrl' })));
   axios.put.mockReturnValue({ data: 'someUrl' });
 
   beforeEach(() => {
@@ -64,12 +69,25 @@ describe('AdminPetForm', () => {
 
   it('successfully uploads to s3 with saveForm function', async () => {
     wrapper.setState({ fileList: [file], tagsString });
+
     const { name, type } = file;
+    const id = `2017-12-10T06:00:00.000Z-${name}`;
     const tags = 'guinea pig&moomoo&fluffy';
     const headers = { headers: { 'x-amz-tagging': tags } };
     await wrapperInst.saveForm();
 
-    expect(axios.post).toHaveBeenCalledWith('/upload', { name, type });
+    expect(axios.post).toHaveBeenCalledWith('/upload', { id, type });
     expect(axios.put).toHaveBeenCalledWith('someUrl', file, headers);
+    expect(axios.put).toHaveBeenCalledWith('/upload', { id });
+  });
+
+  it('unsuccessfully uploads to s3 with saveForm function', async () => {
+    wrapper.setState({ fileList: [{ ...file, name: 'badId' }], tagsString });
+
+    const { type } = file;
+    const id = '2017-12-10T06:00:00.000Z-badId';
+    await wrapperInst.saveForm();
+
+    expect(axios.post).toHaveBeenCalledWith('/upload', { id, type });
   });
 });
