@@ -2,7 +2,7 @@ import { petinfo } from '../profile';
 
 jest.mock('../AWS/dynamoDb', () => ({
   get: jest.fn((params, callbackSpy) => {
-    if (params.Key.petId === 123) {
+    if (params.Key.qrId === 123) {
       return callbackSpy(null, { Item: { name: 'moomoo' } });
     }
 

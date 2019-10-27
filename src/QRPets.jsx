@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import TextLabel from './components/InfoComponent/TextLabel';
-import TabbedPage from './components/InfoComponent/TabbedPage';
-import Image from './components/ImageComponent/Image';
+import TextLabel from './components/TextLabel';
+import TabbedPage from './components/TabbedPage';
+import Image from './components/Image';
 import './App.css';
 
 const picString = 'pic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\npic pic pic\n';

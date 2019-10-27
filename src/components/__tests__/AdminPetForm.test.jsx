@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
-import AdminPetForm from '../../InputComponent/AdminPetForm';
+import AdminPetForm from '../AdminPetForm';
 
 jest.mock('axios');
 

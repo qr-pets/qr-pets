@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Tabs from '@material-ui/core/Tabs';
-import TabbedPage from '../../InfoComponent/TabbedPage';
+import TabbedPage from '../TabbedPage';
 
 describe('TabbedPage', () => {
   const tabs = ['page1', 'page2'];

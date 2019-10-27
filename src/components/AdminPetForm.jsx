@@ -52,28 +52,31 @@ class AdminPetForm extends React.Component {
     const { fileList, tagsString } = this.state;
 
     return (
-      <div>
-        <Input
-          onChange={this.handleFileSelect}
-          type="file"
-          id="file-chooser"
-          disableUnderline
-        />
-        <Input
-          onChange={this.handleTextChange}
-          type="text"
-          placeholder="comma separated tags"
-          id="tag-input"
-          value={tagsString}
-        />
-        <Button
-          color="primary"
-          disabled={(fileList.length === 0)}
-          onClick={this.saveForm}
-          variant="contained"
-        >
-          {'Save Form'}
-        </Button>
+      <div className="container">
+        <h1 className="titleHeader">Adopt a pet today!</h1>
+        <div>
+          <Input
+            onChange={this.handleFileSelect}
+            type="file"
+            id="file-chooser"
+            disableUnderline
+          />
+          <Input
+            onChange={this.handleTextChange}
+            type="text"
+            placeholder="comma separated tags"
+            id="tag-input"
+            value={tagsString}
+          />
+          <Button
+            color="primary"
+            disabled={(fileList.length === 0)}
+            onClick={this.saveForm}
+            variant="contained"
+          >
+            {'Save Form'}
+          </Button>
+        </div>
       </div>
     );
   }

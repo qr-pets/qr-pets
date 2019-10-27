@@ -3,7 +3,7 @@ const documentClient = require('./AWS/dynamoDb');
 
 const profile = express();
 const petinfo = (req, res) => {
-  const getPetParams = { Key: { petId: parseInt(req.params.qrId, 10) }, TableName: 'qr-pets' };
+  const getPetParams = { Key: { qrId: parseInt(req.params.qrId, 10) }, TableName: 'qr-pets' };
 
   documentClient.get(getPetParams, (err, data) => {
     if (err) {
