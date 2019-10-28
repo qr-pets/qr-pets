@@ -3,13 +3,20 @@ const documentClient = require('./AWS/dynamoDb');
 
 const profile = express();
 const petinfo = (req, res) => {
-  const getPetParams = { Key: { qrId: parseInt(req.params.qrId, 10) }, TableName: 'qr-pets' };
+  const getPetParams = {
+    KeyConditionExpression: 'qrId = :qrId',
+    TableName: 'qr-pets',
+    IndexName: 'qrId-index',
+    ExpressionAttributeValues: {
+      ':qrId': parseInt(req.params.qrId, 10),
+    },
+  };
 
-  documentClient.get(getPetParams, (err, data) => {
+  documentClient.query(getPetParams, (err, data) => {
     if (err) {
       console.error(err);
     } else {
-      res.send(data.Item);
+      res.send(data.Items[0]);
     }
   });
 };

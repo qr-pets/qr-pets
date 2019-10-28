@@ -17,12 +17,12 @@ describe('QRPets', () => {
 
   axios.get.mockResolvedValue({
     data: {
-      name: 'MooMoo',
       s3Url: 'someUrl',
       info: {
         age: '3',
         breed: 'Guinea Pig',
-        info: 'testInfo',
+        description: 'testInfo',
+        name: 'MooMoo',
       },
     },
   });
@@ -40,12 +40,12 @@ describe('QRPets', () => {
     expect(axios.get).toHaveBeenCalledWith('/profile/10');
     expect(wrapper.state()).toEqual({
       data: {
-        name: 'MooMoo',
         s3Url: 'someUrl',
         info: {
           age: '3',
           breed: 'Guinea Pig',
-          info: 'testInfo',
+          description: 'testInfo',
+          name: 'MooMoo',
         },
       },
     });

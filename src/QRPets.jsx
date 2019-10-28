@@ -30,15 +30,26 @@ class QRPets extends Component {
 
   render() {
     const { data } = this.state;
-    const { info, name, s3Url } = data;
-    const { age, breed, info: description } = info;
+    const { info, id } = data;
+    const {
+      age,
+      breed,
+      description,
+      name,
+    } = info;
 
     return (
       <div className="container">
         <h1 className="titleHeader">Adopt a pet today!</h1>
         <div className="section" id="basicInfo">
           <div className="section" id="profilePicture">
-            <Image imageClassName="thumbnail" src={s3Url} alt={name} width={100} height={100} />
+            <Image
+              imageClassName="thumbnail"
+              src={`https://qr-pets-images.s3.us-east-2.amazonaws.com/${id}`}
+              alt={name}
+              width={100}
+              height={100}
+            />
           </div>
           <div className="section" id="basicTextInfo">
             <TextLabel label="Name" value={name} />

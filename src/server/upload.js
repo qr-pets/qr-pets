@@ -29,12 +29,13 @@ const savePetInfo = async (req, res) => {
   const response = await documentClient.put({
     TableName: 'qr-pets',
     Item: {
+      id,
       info: {
         age: 2,
         breed: 'cat',
-        info: 'sup',
+        name: 'testName',
+        description: 'sup',
       },
-      id,
     },
   }).promise();
 
