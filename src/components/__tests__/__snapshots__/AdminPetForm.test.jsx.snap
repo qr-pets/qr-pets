@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdminPetForm renders as expected 1`] = `
+<div
+  className="container"
+>
+  <h1
+    className="titleHeader"
+  >
+    Adopt a pet today!
+  </h1>
+  <div>
+    <WithStyles(ForwardRef(Input))
+      disableUnderline={true}
+      id="file-chooser"
+      onChange={[Function]}
+      type="file"
+    />
+    <WithStyles(ForwardRef(Input))
+      id="tag-input"
+      onChange={[Function]}
+      placeholder="comma separated tags"
+      type="text"
+      value=""
+    />
+    <WithStyles(ForwardRef(Button))
+      color="primary"
+      disabled={true}
+      onClick={[Function]}
+      variant="contained"
+    >
+      Save Form
+    </WithStyles(ForwardRef(Button))>
+  </div>
+</div>
+`;
