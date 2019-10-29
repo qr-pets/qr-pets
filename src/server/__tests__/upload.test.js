@@ -1,4 +1,4 @@
-import upload from '../upload';
+import { getSignedUrl, savePetInfo } from '../upload';
 import s3 from '../AWS/s3';
 
 jest.mock('../AWS/s3', () => ({
@@ -8,6 +8,12 @@ jest.mock('../AWS/s3', () => ({
     }
 
     return callbackSpy('error');
+  }),
+}));
+
+jest.mock('../AWS/dynamoDb', () => ({
+  put: () => ({
+    promise: () => Promise.resolve({ status: 200 }),
   }),
 }));
 
@@ -21,12 +27,6 @@ const expectedS3Params = {
 };
 
 describe('upload route', () => {
-  const req = {
-    body: {
-      name: 'myPic',
-      type: 'image/jpeg',
-    },
-  };
   const res = {
     json: jest.fn(),
   };
@@ -35,21 +35,47 @@ describe('upload route', () => {
     jest.clearAllMocks();
   });
 
-  it('upload returns signed url', () => {
-    process.env.S3_BUCKET = 'testBucket';
+  describe('getSignedUrl', () => {
+    const req = {
+      body: {
+        id: 'myPic',
+        type: 'image/jpeg',
+      },
+    };
+    it('getSignedUrl returns signed url', () => {
+      process.env.S3_BUCKET = 'testBucket';
 
-    upload(req, res);
+      getSignedUrl(req, res);
 
-    expect(res.json).toHaveBeenCalledWith('sup');
-    expect(s3.getSignedUrl).toHaveBeenCalledWith('putObject', expectedS3Params, expect.any(Function));
+      expect(res.json).toHaveBeenCalledWith('sup');
+      expect(s3.getSignedUrl).toHaveBeenCalledWith('putObject', expectedS3Params, expect.any(Function));
+    });
+    it('getSignedUrl returns an error', () => {
+      process.env.S3_BUCKET = 'wrongBucket';
+      const s3ParamsWithWrongBucket = { ...expectedS3Params, Bucket: 'wrongBucket' };
+
+      getSignedUrl(req, res);
+
+      expect(res.json).toHaveBeenCalledWith({ error: 'error' });
+      expect(s3.getSignedUrl).toHaveBeenCalledWith('putObject', s3ParamsWithWrongBucket, expect.any(Function));
+    });
   });
-  it('upload returns an error', () => {
-    process.env.S3_BUCKET = 'wrongBucket';
-    const s3ParamsWithWrongBucket = { ...expectedS3Params, Bucket: 'wrongBucket' };
+  describe('savePetInfo', () => {
+    const req = {
+      body: {
+        id: 'myPic',
+      },
+    };
 
-    upload(req, res);
+    it('saves info to db successfully', async () => {
+      await savePetInfo(req, res);
 
-    expect(res.json).toHaveBeenCalledWith({ error: 'error' });
-    expect(s3.getSignedUrl).toHaveBeenCalledWith('putObject', s3ParamsWithWrongBucket, expect.any(Function));
+      expect(res.json).toHaveBeenCalledWith({ status: 200 });
+    });
+    it('saves info to db eror', async () => {
+      await savePetInfo(req, res);
+
+      expect(res.json).toHaveBeenCalledWith({ status: 200 });
+    });
   });
 });
